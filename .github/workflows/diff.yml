@@ -3,9 +3,9 @@ on:
     #- cron:  '0 18 * * 4'
   workflow_dispatch:
 
-name: check-ver
+name: diff
 jobs:
-  check-ver:
+  diff:
     runs-on: ubuntu-latest
     steps:
 
