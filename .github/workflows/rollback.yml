@@ -14,6 +14,7 @@ jobs:
 
       - name: xy
         run: | 
+          cd ./releases/
           wget -O xy.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.0/Xray-linux-64.zip 
           unzip xy.zip
           rm -rf ./xy.zip ./LICENSE ./*.md ./*.dat 
@@ -21,7 +22,6 @@ jobs:
 
       - name: caddy
         run: | 
-          cd ./releases/
           wget -O caddy.tar.gz "https://github.com/caddyserver/caddy/releases/download/v2.6.1/caddy_2.6.1_linux_amd64.tar.gz"
           tar x -z -f caddy.tar.gz -C ./releases caddy
           rm -f ./caddy.tar.gz ./LICENSE ./*.md
