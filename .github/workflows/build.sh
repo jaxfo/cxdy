@@ -10,8 +10,9 @@ else
 	git clone https://github.com/XTLS/Xray-core.git
 	cd Xray-core && go mod download
 	CGO_ENABLED=0 go build -o xy -trimpath -ldflags "-s -w -buildid=" ./main
-	mv xy ../releases/xy
-	rm -rf ../Xray-core
+        mv xy ../releases/xy
+	cd ../
+	rm -rf Xray-core
 fi
 if [[ ${caddy_latest} == ${caddy_current} ]]
 then
@@ -22,7 +23,6 @@ else
 fi
 git config user.name github-actions
 git config user.email github-actions@github.com
-git remote set-url origin https://${{ github.actor }}:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/${{ github.repository }}
 git add .
 git commit --allow-empty -m "$(git log -1 --pretty=%s)"
 git push
