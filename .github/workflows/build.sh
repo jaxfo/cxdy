@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 xy_latest=$(curl -s "https://api.github.com/repos/XTLS/Xray-core/releases/latest" | sed 'y/,/\n/' | grep 'tag_name' | awk -F '"' '{print substr($4,2)}')
-test -f xy && xy_current=$(./releases/xy version | awk 'NR==1 {print $2}')
-cadyy_latest=$(curl -s "https://api.github.com/repos/caddyserver/caddy/releases/latest" | sed 'y/,/\n/' | grep 'tag_name' | awk -F '"' '{print substr($4,2)}')
-test -f caddy && caddy_current=$(./releases/caddy version | awk 'NR==1 {print $2}')
+xy_current=$(./releases/xy version | awk 'NR==1 {print $2}')
+caddy_latest=$(curl -s "https://api.github.com/repos/caddyserver/caddy/releases/latest" | grep "tag_name" | cut -d\" -f4 | sed -e "s/^v//" -e "s/-.$//" | cut -d"v" -f 2)
+caddy_current=$(./releases/caddy version | cut -d" " -f 1 | cut -d"v" -f 2)
 if [[ ${xy_latest} == ${xy_current} ]]
 then
     echo 'xy is nothing to do'
