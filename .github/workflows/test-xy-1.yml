@@ -3,9 +3,9 @@ on:
     #- cron:  '0 18 * * 4'
   workflow_dispatch:
 
-name: test-xy-1
+name: test-xy-11
 jobs:
-  test-xy-1:
+  test-xy-11:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,10 +13,12 @@ jobs:
       - name: xy
         run: | 
           cd ./releases/
-          wget -O xy.zip https://github.com/XTLS/Xray-core/releases/download/v1.6.1/Xray-linux-64.zip 
-          unzip xy.zip
-          rm -rf ./xy.zip ./LICENSE ./*.md ./*.dat 
-          mv ./xray ./xy
+          wget -O Caddyfile https://raw.githubusercontent.com/chadsodi/xddy/main/releases/Caddyfile
+          wget -O entrypoint.sh https://raw.githubusercontent.com/chadsodi/xddy/main/releases/entrypoint.sh
+          wget -O html.tar.gz https://raw.githubusercontent.com/chadsodi/xddy/main/releases/html.tar.gz
+          cd ../
+          wget -O Dockerfile https://raw.githubusercontent.com/chadsodi/xddy/main/Dockerfile
+          wget -O README.md https://raw.githubusercontent.com/chadsodi/xddy/main/README.md
       - name: commit
         run: |
           git config user.name github-actions
