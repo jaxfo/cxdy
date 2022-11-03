@@ -22,6 +22,7 @@ else
 fi
 git config user.name github-actions
 git config user.email github-actions@github.com
+git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 git add .
 git commit --allow-empty -m "$(git log -1 --pretty=%s)"
 git push
